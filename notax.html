@@ -1,0 +1,74 @@
+<head>
+<title>Remove Tax</title>
+<style>
+body {
+margin-left: 41.5%;
+margin-top: 5%;
+background: black;
+color: white;
+}
+textarea {
+margin-top: 0%;
+padding-top: 0%;
+width: 30%;
+}
+img {
+width: 30%;
+padding: 0%;
+margin-top: 0%;
+margin-bottom: 0%;
+}
+h1 {
+font-family: monospace;
+font-size: 22pt;
+padding: 0%;
+margin-top: 0.5%;
+margin-bottom: 1%;
+}
+h2 {
+font-family: monospace;
+font-size: 14pt;
+padding: 0%;
+margin-top: 0.5%;
+margin-bottom: 0.5%;
+}
+h3 {
+font-family: monospace;
+padding: 0%;
+margin-top: 0.5%;
+margin-bottom: 0.5%;
+}
+</style>
+<script>
+function onLoad() {
+document.getElementById("input").focus();
+}
+function myPress() {
+if (window.event.keyCode === 13) {
+document.getElementById("input").select();
+}
+var inString = document.getElementById("input").value;
+var inNum = 0.0;
+var outNum = 0.0;
+var tax = 0.0;
+if (inString !== "") {
+inNum = parseFloat(inString);
+outNum = inNum / 1.13;
+tax = inNum - outNum;
+}
+document.getElementById("output1").innerHTML = "With Tax:&nbsp&nbsp&nbsp$" + inNum.toFixed(2);
+document.getElementById("output2").innerHTML = "Tax:&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp$" + tax.toFixed(2);
+document.getElementById("output3").innerHTML = "Before Tax:&nbsp$" + outNum.toFixed(2);
+}
+</script>
+</head>
+<body onload="onLoad()">
+<img src="trr.png" />
+<br></br>
+<h1>Tax Remover</h1>
+<h3>Amount With Tax:</h3>
+<textarea placeholder="0" id="input" onkeyup="myPress()"></textarea>
+<h2 id="output1">With Tax:&nbsp&nbsp&nbsp$0.00</h2>
+<h2 id="output2">Tax:&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp$0.00</h2>
+<h2 id="output3">Before Tax:&nbsp$0.00</h2>
+</body>
