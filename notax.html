@@ -1,8 +1,10 @@
+<!--made by Aaron-->
+<html>
 <head>
 <title>Remove Tax</title>
 <style>
 body {
-margin-left: 41.5%;
+text-align: center;
 margin-top: 5%;
 background: black;
 color: white;
@@ -10,10 +12,11 @@ color: white;
 textarea {
 margin-top: 0%;
 padding-top: 0%;
-width: 30%;
+width: 18%;
+height: 17pt;
 }
 img {
-width: 30%;
+width: 20%;
 padding: 0%;
 margin-top: 0%;
 margin-bottom: 0%;
@@ -38,31 +41,55 @@ padding: 0%;
 margin-top: 0.5%;
 margin-bottom: 0.5%;
 }
+.footer {
+font-family: monospace;
+font-size: 8pt;
+color: darkslategrey;
+position: absolute;
+left: 1%;
+bottom: 0;
+text-align: center;
+}
 </style>
 <script>
+var inString = "";
+var inNum = 0.0;
+var outNum = 0.0;
+var tax = 0.0;
 function onLoad() {
 document.getElementById("input").focus();
 }
 function myPress() {
 if (window.event.keyCode === 13) {
+document.getElementById("input").value = inNum;
 document.getElementById("input").select();
 }
-var inString = document.getElementById("input").value;
-var inNum = 0.0;
-var outNum = 0.0;
-var tax = 0.0;
-if (inString !== "") {
+inString = document.getElementById("input").value;
 inNum = parseFloat(inString);
+if (isNaN(inNum) === true) {
+inNum = 0;
+}
 outNum = inNum / 1.13;
 tax = inNum - outNum;
+var inString = inNum.toFixed(2);
+var taxString = tax.toFixed(2);
+var outString = outNum.toFixed(2);
+document.getElementById("output1").innerHTML = "With Tax:&nbsp&nbsp&nbsp$" + inString;
+if (inString.length === taxString.length) {
+document.getElementById("output2").innerHTML = "Tax:&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp$" + taxString;
+} else {
+document.getElementById("output2").innerHTML = "Tax:&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp$" + taxString;
 }
-document.getElementById("output1").innerHTML = "With Tax:&nbsp&nbsp&nbsp$" + inNum.toFixed(2);
-document.getElementById("output2").innerHTML = "Tax:&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp$" + tax.toFixed(2);
-document.getElementById("output3").innerHTML = "Before Tax:&nbsp$" + outNum.toFixed(2);
+if (inString.length === outString.length) {
+document.getElementById("output3").innerHTML = "Before Tax:&nbsp$" + outString;
+} else {
+document.getElementById("output3").innerHTML = "Before Tax:&nbsp&nbsp$" + outString;
+}
 }
 </script>
 </head>
 <body onload="onLoad()">
+<div id="main">
 <img src="trr.png" />
 <br></br>
 <h1>Tax Remover</h1>
@@ -71,4 +98,9 @@ document.getElementById("output3").innerHTML = "Before Tax:&nbsp$" + outNum.toFi
 <h2 id="output1">With Tax:&nbsp&nbsp&nbsp$0.00</h2>
 <h2 id="output2">Tax:&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp$0.00</h2>
 <h2 id="output3">Before Tax:&nbsp$0.00</h2>
+</div>
 </body>
+<div class="footer">
+<p>Made by Aaron</p>
+</div>
+</html>
