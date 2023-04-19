@@ -50,11 +50,17 @@ display: block;
     margin: auto;
     padding: 0;
 }
+html {
+    width: 100%;
+    height: 100%;
+}
 body {
 text-align: center;
 margin-top: 5%;
 color: white;
 margin-top: 5%;
+margin-left: 0%;
+margin-right: 0%;
 }
 textarea {
 margin-top: 0%;
@@ -66,7 +72,7 @@ height: 17pt;
 img {
 width: 20%;
 padding: 0%;
-margin-top: 0%;
+margin-top: 1%;
 margin-bottom: 0%;
 }
 h1 {
@@ -74,7 +80,7 @@ font-family: monospace;
 font-size: 22pt;
 padding: 0%;
 margin-top: 0%;
-margin-bottom: 0.5%;
+margin-bottom: 0%;
 }
 h2 {
 font-family: monospace;
@@ -116,8 +122,6 @@ if (window.event.keyCode === 13) {
 document.getElementById("input").value = inNum;
 document.getElementById("input").select();
 document.getElementById("image2").style = "animation: bounce 1s normal ease-in-out";
-} else {
-document.getElementById("image2").style = "animation: none";
 }
 inString = document.getElementById("input").value;
 inNum = parseFloat(inString);
@@ -141,6 +145,9 @@ document.getElementById("output3").innerHTML = "Before Tax:&nbsp$" + outString;
 document.getElementById("output3").innerHTML = "Before Tax:&nbsp&nbsp$" + outString;
 }
 }
+addEventListener("animationend", (event) => {});
+
+onanimationend = (event) => {document.getElementById("image2").style = "animation: none";};
 </script>
 </head>
 <body onload="onLoad()">
