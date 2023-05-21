@@ -1,0 +1,80 @@
+<!--made by Aaron-->
+<html  onclick="console.log('html');">
+<div id="overlay" onclick="console.log('overlay');">
+<div id="image1" onclick="console.log('image1');"></div>
+<div id="image2" onclick="console.log('image2');"></div>
+<div id="image3"  onclick="console.log('image3');"></div>
+</div>
+<head>
+<title>Jump</title>
+<style>
+@keyframes bounce {
+0% { transform: translateY(0); }
+50% { transform: translateY(-60px); }
+100% { transform : translateY(0); }
+}
+#container {
+    position: absolute;
+    width: 99%;
+    height: 99%;
+    margin: auto;
+    padding: 0;
+}
+#overlay {
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+}
+#image1 {
+display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url("./mario1.png") center center fixed;
+    z-index: 0;
+}
+#image2 {
+display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url("./mario2.png") center center fixed;
+    z-index: 1;
+}
+#image3 {
+display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 15%;
+    background: url("./scan.png") center center fixed;
+    z-index: 2;
+}
+html {
+    width: 100%;
+    height: 100%;
+}
+</style>
+<script>
+const object = document.getElementById("image3");
+const mario = document.getElementById("image2");
+
+addEventListener("animationend", (event) => {});
+
+onanimationend = (event) => {document.getElementById("image2").style = "animation: none";};
+</script>
+</head>
+<body onclick="console.log('body');">
+<div id="container"  onclick="document.getElementById('image2').style = 'animation: bounce 0.8s normal ease-in-out';"></div>
+</body>
+</html>

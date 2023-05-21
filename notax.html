@@ -126,9 +126,6 @@ var tax = 0.0;
 function onLoad() {
 document.getElementById("input").focus();
 }
-function delay(time) {
-  return new Promise(resolve => setTimeout(resolve, time));
-}
 function myPress() {
 if (window.event.keyCode === 13) {
 document.getElementById("input").value = inNum;
@@ -163,7 +160,7 @@ onanimationend = (event) => {document.getElementById("image2").style = "animatio
 </script>
 </head>
 <body onload="onLoad()">
-<div id="container">
+<div id="container" onclick="document.getElementById('image2').style = 'animation: bounce 0.8s normal ease-in-out';">
 <div id="main">
 <img src="trr.png" />
 <br></br>
