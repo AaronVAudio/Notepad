@@ -53,7 +53,11 @@ countingA = true;
 var minutesA, secondsA;
 countdownA = setInterval(function () {
 var currentTime = new Date();
+if (currentTime < endTime) {
 var remaining = new Date(endTime - currentTime);
+} else {
+var remaining = 0;
+}
 var timerA = remaining.getMinutes() * 60 + remaining.getSeconds();
 minutesA = parseInt(timerA / 60, 10);
 secondsA = parseInt(timerA % 60, 10);
@@ -78,7 +82,11 @@ countingB = true;
 var minutesB, secondsB;
 countdownB = setInterval(function () {
 var currentTime = new Date();
+if (currentTime < endTime) {
 var remaining = new Date(endTime - currentTime);
+} else {
+var remaining = 0;
+}
 var timerB = remaining.getMinutes() * 60 + remaining.getSeconds();
 minutesB = parseInt(timerB / 60, 10);
 secondsB = parseInt(timerB % 60, 10);
@@ -117,7 +125,7 @@ countingB = false;
 
 function startClick(button) {
 var now = new Date();
-var done = new Date(now.getTime() + 30*60000);
+var done = new Date(now.getTime() + time*60000);
 if (done.getHours() <= 12) {
 var doneTime = done.getHours() + ":" + done.getMinutes() + "AM";
 } else {
@@ -140,7 +148,7 @@ document.getElementById("statusB").textContent = "Finished at " + doneTime;
 }
 
 window.onload = function () {
-time = 30 * 60;
+time = 30;
 countingA = false;
 countingB = false;
 displayA = document.querySelector('#timeA');
@@ -158,14 +166,14 @@ displayB = document.querySelector('#timeB');
 <h2>Table A:</h2>
 <h3><span id="timeA">30:00</span> remaining!</h3>
 <h3 id="statusA">Available!</h3>
-<button onclick="stopTimer(this.id)" id="stopA">Stop!</button>
+<button onclick="stopTimer(this.id)" id="stopA">Stop/Reset!</button>
 <button onclick="startClick(this.id)" id="startA">Start!</button>
 </div>
 <div class="table">
 <h2>Table B:</h2>
 <h3><span id="timeB">30:00</span> remaining!</h3>
 <h3 id="statusB">Available!</h3>
-<button onclick="stopTimer(this.id)" id="stopB">Stop!</button>
+<button onclick="stopTimer(this.id)" id="stopB">Stop/Reset!</button>
 <button onclick="startClick(this.id)" id="startB">Start!</button>
 </div>
 </div>
