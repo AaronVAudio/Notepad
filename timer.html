@@ -1,0 +1,165 @@
+<html>
+<head>
+<title>Ping Pong Timer</title>
+</head>
+<body>
+<style>
+html {
+width: 100%;
+height: 100%;
+background: black;
+color: white;
+}
+button {
+width: 30%;
+height: 40px;
+}
+body {
+text-align: center;
+}
+#main {
+position: absolute;
+width: 99%;
+margin: auto;
+padding: 0;
+}
+.tables {
+padding: 1%;
+}
+.table {
+float: left;
+padding: 1%;
+width: 48%;
+}
+img {
+width: 30%;
+}
+.footer {
+font-family: monospace;
+font-size: 8pt;
+color: darkslategrey;
+position: absolute;
+left: 1%;
+bottom: 0;
+text-align: center;
+}
+</style>
+<script>
+var countdownA, countdownB, time, displayA, displayB, countingA, countingB;
+
+function startTimer(duration, display) {
+if (display.id === "timeA") {
+countingA = true;
+var timerA = duration, minutesA, secondsA;
+countdownA = setInterval(function () {
+minutesA = parseInt(timerA / 60, 10);
+secondsA = parseInt(timerA % 60, 10);
+
+minutesA = minutesA < 10 ? "0" + minutesA : minutesA;
+secondsA = secondsA < 10 ? "0" + secondsA : secondsA;
+
+display.textContent = minutesA + ":" + secondsA;
+
+if (--timerA < 0) {
+timerA = duration;
+let newWin = window.open("about:blank", "Table A Done!", "width=200,height=200");
+
+newWin.document.write("Table A is Done!");
+newWin.focus();
+clearInterval(countdownA);
+countingA = false;
+}
+}, 1000);
+} else if (display.id === "timeB") {
+countingB = true;
+var timerB = duration, minutesB, secondsB;
+countdownB = setInterval(function () {
+minutesB = parseInt(timerB / 60, 10);
+secondsB = parseInt(timerB % 60, 10);
+
+minutesB = minutesB < 10 ? "0" + minutesB : minutesB;
+secondsB = secondsB < 10 ? "0" + secondsB : secondsB;
+
+display.textContent = minutesB + ":" + secondsB;
+
+if (--timerB < 0) {
+timerB = duration;
+let newWin = window.open("about:blank", "Table B Done!", "width=200,height=200");
+
+newWin.document.write("Table B is Done!");
+newWin.focus();
+clearInterval(countdownB);
+countingB = false;
+}
+}, 1000);
+}
+}
+
+function stopTimer(button) {
+if (button === "stopA") {
+displayA.textContent = "30:00";
+document.getElementById("statusA").textContent = "Available!";
+clearInterval(countdownA);
+countingA = false;
+} else if (button === "stopB") {
+displayB.textContent = "30:00";
+document.getElementById("statusB").textContent = "Available!";
+clearInterval(countdownB);
+countingB = false;
+}
+}
+
+function startClick(button) {
+var now = new Date();
+var done = new Date(now.getTime() + 30*60000);
+if (done.getHours() <= 12) {
+var doneTime = done.getHours() + ":" + done.getMinutes() + "AM";
+} else {
+var doneHours = done.getHours() - 12;
+var doneTime = doneHours + ":" + done.getMinutes() + "PM";
+}
+if (button === "startA" && !countingA) {
+startTimer(time, displayA);
+document.getElementById("statusA").textContent = "Finished at " + doneTime;
+} else if (button === "startB" && !countingB) {
+startTimer(time, displayB);
+document.getElementById("statusB").textContent = "Finished at " + doneTime;
+}
+}
+
+window.onload = function () {
+time = 30 * 60;
+countingA = false;
+countingB = false;
+displayA = document.querySelector('#timeA');
+displayB = document.querySelector('#timeB');
+};
+</script>
+<body>
+<div id="main">
+<div id="head">
+<img src="./catpong.gif" />
+<h1>Ping Pong</h1>
+</div>
+<div class="tables">
+<div class="table">
+<h2>Table A:</h2>
+<h3><span id="timeA">30:00</span> remaining!</h3>
+<h3 id="statusA">Available!</h3>
+<button onclick="stopTimer(this.id)" id="stopA">Stop!</button>
+<button onclick="startClick(this.id)" id="startA">Start!</button>
+</div>
+<div class="table">
+<h2>Table B:</h2>
+<h3><span id="timeB">30:00</span> remaining!</h3>
+<h3 id="statusB">Available!</h3>
+<button onclick="stopTimer(this.id)" id="stopB">Stop!</button>
+<button onclick="startClick(this.id)" id="startB">Start!</button>
+</div>
+</div>
+</div>
+</body>
+<div class="footer">
+<p>Made by <a href="http://www.avdev.ca">Aaron</a></p>
+</div>
+</html>
