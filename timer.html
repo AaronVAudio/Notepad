@@ -47,11 +47,14 @@ text-align: center;
 <script>
 var countdownA, countdownB, time, displayA, displayB, countingA, countingB;
 
-function startTimer(duration, display) {
+function startTimer(endTime, display) {
 if (display.id === "timeA") {
 countingA = true;
-var timerA = duration, minutesA, secondsA;
+var minutesA, secondsA;
 countdownA = setInterval(function () {
+var currentTime = new Date();
+var remaining = new Date(endTime - currentTime);
+var timerA = remaining.getMinutes() * 60 + remaining.getSeconds();
 minutesA = parseInt(timerA / 60, 10);
 secondsA = parseInt(timerA % 60, 10);
 
@@ -61,7 +64,7 @@ secondsA = secondsA < 10 ? "0" + secondsA : secondsA;
 display.textContent = minutesA + ":" + secondsA;
 
 if (--timerA < 0) {
-timerA = duration;
+timerA = 0;
 let newWin = window.open("about:blank", "Table A Done!", "width=200,height=200");
 
 newWin.document.write("Table A is Done!");
@@ -72,8 +75,11 @@ countingA = false;
 }, 1000);
 } else if (display.id === "timeB") {
 countingB = true;
-var timerB = duration, minutesB, secondsB;
+var minutesB, secondsB;
 countdownB = setInterval(function () {
+var currentTime = new Date();
+var remaining = new Date(endTime - currentTime);
+var timerB = remaining.getMinutes() * 60 + remaining.getSeconds();
 minutesB = parseInt(timerB / 60, 10);
 secondsB = parseInt(timerB % 60, 10);
 
@@ -83,7 +89,7 @@ secondsB = secondsB < 10 ? "0" + secondsB : secondsB;
 display.textContent = minutesB + ":" + secondsB;
 
 if (--timerB < 0) {
-timerB = duration;
+timerB = 0;
 let newWin = window.open("about:blank", "Table B Done!", "width=200,height=200");
 
 newWin.document.write("Table B is Done!");
@@ -116,13 +122,19 @@ if (done.getHours() <= 12) {
 var doneTime = done.getHours() + ":" + done.getMinutes() + "AM";
 } else {
 var doneHours = done.getHours() - 12;
-var doneTime = doneHours + ":" + done.getMinutes() + "PM";
+var minutes = done.getMinutes();
+if (minutes < 10) {
+var minuteString = "0" + minutes;
+} else {
+var minuteString = minutes;
+}
+var doneTime = doneHours + ":" + minuteString + "PM";
 }
 if (button === "startA" && !countingA) {
-startTimer(time, displayA);
+startTimer(done, displayA);
 document.getElementById("statusA").textContent = "Finished at " + doneTime;
 } else if (button === "startB" && !countingB) {
-startTimer(time, displayB);
+startTimer(done, displayB);
 document.getElementById("statusB").textContent = "Finished at " + doneTime;
 }
 }
