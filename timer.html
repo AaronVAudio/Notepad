@@ -1,6 +1,9 @@
 <html>
 <head>
 <title>Ping Pong Timer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Audiowide&family=Special+Elite&display=swap" rel="stylesheet">
 </head>
 <body>
 <style>
@@ -43,6 +46,36 @@ left: 1%;
 bottom: 0;
 text-align: center;
 }
+h2 {
+font-family: 'Audiowide', cursive;
+color: light-blue;
+-webkit-text-stroke-width: 0.25px;
+-webkit-text-stroke-color: black;
+font-size: 35px;
+margin-top: 0;
+margin-bottom: 0;
+}
+h1 {
+font-family: 'Audiowide', cursive;
+color: blue;
+font-size: 50pt;
+padding-bottom: 0;
+margin-bottom: 0;
+margin-top: 0;
+text-shadow: 0px 0px 50px yellow;
+-webkit-text-stroke-width: 0.25px;
+-webkit-text-stroke-color: black;
+}
+h3 {
+font-family: 'Special Elite', cursive;
+color: lightgrey;
+}
+.stop {
+background-color: red;
+}
+.start {
+background-color: green;
+}
 </style>
 <script>
 var countdownA, countdownB, time, displayA, displayB, countingA, countingB;
@@ -69,6 +102,7 @@ display.textContent = minutesA + ":" + secondsA;
 
 if (--timerA < 0) {
 timerA = 0;
+display.textContent = "0:00";
 let newWin = window.open("about:blank", "Table A Done!", "width=200,height=200");
 
 newWin.document.write("Table A is Done!");
@@ -98,6 +132,7 @@ display.textContent = minutesB + ":" + secondsB;
 
 if (--timerB < 0) {
 timerB = 0;
+display.textContent = "0:00";
 let newWin = window.open("about:blank", "Table B Done!", "width=200,height=200");
 
 newWin.document.write("Table B is Done!");
@@ -166,15 +201,15 @@ displayB = document.querySelector('#timeB');
 <h2>Table A:</h2>
 <h3><span id="timeA">30:00</span> remaining!</h3>
 <h3 id="statusA">Available!</h3>
-<button onclick="stopTimer(this.id)" id="stopA">Stop/Reset!</button>
-<button onclick="startClick(this.id)" id="startA">Start!</button>
+<button onclick="stopTimer(this.id)" id="stopA" class="stop">Stop/Reset!</button>
+<button onclick="startClick(this.id)" id="startA" class="start">Start!</button>
 </div>
 <div class="table">
 <h2>Table B:</h2>
 <h3><span id="timeB">30:00</span> remaining!</h3>
 <h3 id="statusB">Available!</h3>
-<button onclick="stopTimer(this.id)" id="stopB">Stop/Reset!</button>
-<button onclick="startClick(this.id)" id="startB">Start!</button>
+<button onclick="stopTimer(this.id)" id="stopB" class="stop">Stop/Reset!</button>
+<button onclick="startClick(this.id)" id="startB" class="start">Start!</button>
 </div>
 </div>
 </div>
