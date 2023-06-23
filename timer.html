@@ -1,4 +1,5 @@
 <html>
+<div id="overlay"></div>
 <head>
 <title>Ping Pong Timer</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -7,10 +8,22 @@
 </head>
 <body>
 <style>
-html {
+#overlay {
+display: block;
+position: absolute;
+top: 0;
+left: 0;
 width: 100%;
 height: 100%;
 background: black;
+background-size: cover;
+opacity: 60%;
+z-index: 0;
+}
+html {
+width: 100%;
+height: 100%;
+background: url("./carpet.jpg");
 color: white;
 }
 button {
@@ -48,7 +61,7 @@ text-align: center;
 }
 h2 {
 font-family: 'Audiowide', cursive;
-color: light-blue;
+color: grey;
 -webkit-text-stroke-width: 0.25px;
 -webkit-text-stroke-color: black;
 font-size: 35px;
@@ -82,6 +95,8 @@ var countdownA, countdownB, time, displayA, displayB, countingA, countingB;
 
 function startTimer(endTime, display) {
 if (display.id === "timeA") {
+document.getElementById("tabA").style.textShadow = "0px 0px 10px lightblue";
+document.getElementById("tabA").style.color = "lightblue";
 countingA = true;
 var minutesA, secondsA;
 countdownA = setInterval(function () {
@@ -112,6 +127,8 @@ countingA = false;
 }
 }, 1000);
 } else if (display.id === "timeB") {
+document.getElementById("tabB").style.textShadow = "0px 0px 10px lightblue";
+document.getElementById("tabB").style.color = "lightblue";
 countingB = true;
 var minutesB, secondsB;
 countdownB = setInterval(function () {
@@ -146,11 +163,15 @@ countingB = false;
 
 function stopTimer(button) {
 if (button === "stopA") {
+document.getElementById("tabA").style.textShadow = "none";
+document.getElementById("tabA").style.color = "grey";
 displayA.textContent = "30:00";
 document.getElementById("statusA").textContent = "Available!";
 clearInterval(countdownA);
 countingA = false;
 } else if (button === "stopB") {
+document.getElementById("tabB").style.textShadow = "none";
+document.getElementById("tabB").style.color = "grey";
 displayB.textContent = "30:00";
 document.getElementById("statusB").textContent = "Available!";
 clearInterval(countdownB);
@@ -191,6 +212,7 @@ displayB = document.querySelector('#timeB');
 };
 </script>
 <body>
+<div id="container">
 <div id="main">
 <div id="head">
 <img src="./catpong.gif" />
@@ -198,18 +220,19 @@ displayB = document.querySelector('#timeB');
 </div>
 <div class="tables">
 <div class="table">
-<h2>Table A:</h2>
+<h2 id="tabA">Table A:</h2>
 <h3><span id="timeA">30:00</span> remaining!</h3>
 <h3 id="statusA">Available!</h3>
 <button onclick="stopTimer(this.id)" id="stopA" class="stop">Stop/Reset!</button>
 <button onclick="startClick(this.id)" id="startA" class="start">Start!</button>
 </div>
 <div class="table">
-<h2>Table B:</h2>
+<h2 id="tabB">Table B:</h2>
 <h3><span id="timeB">30:00</span> remaining!</h3>
 <h3 id="statusB">Available!</h3>
 <button onclick="stopTimer(this.id)" id="stopB" class="stop">Stop/Reset!</button>
 <button onclick="startClick(this.id)" id="startB" class="start">Start!</button>
+</div>
 </div>
 </div>
 </div>
