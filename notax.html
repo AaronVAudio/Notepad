@@ -1,5 +1,5 @@
 <!--made by Aaron-->
-<--1024x768-->
+<!--formatting designed to work on Trophy Case terminals and may look ugly elsewhere-->
 <html>
 <div id="overlay">
 <div id="image1"></div>
@@ -134,7 +134,7 @@ document.getElementById("input").select();
 document.getElementById("image2").style = "animation: bounce 0.8s normal ease-in-out";
 }
 inString = document.getElementById("input").value;
-inNum = parseFloat(inString);
+inNum = parseFloat(inString.replace(/,/g,''));
 if (isNaN(inNum) === true) {
 inNum = 0;
 }
