@@ -97,6 +97,30 @@ h3 {
 font-family: 'Special Elite', cursive;
 color: lightgrey;
 }
+#startA {
+transform: translateY(-3px);
+box-shadow: 0px 3px 0px black;
+transition: transform, box-shadow;
+transition-duration: 0.5s;
+}
+#startB {
+transform: translateY(-3px);
+box-shadow: 0px 3px 0px black;
+transition: transform, box-shadow;
+transition-duration: 0.5s;
+}
+#stopA {
+transform: translateY(0px);
+box-shadow: 0px 0px 0px black;
+transition: transform, box-shadow;
+transition-duration: 0.5s;
+}
+#stopB {
+transform: translateY(0px);
+box-shadow: 0px 0px 0px black;
+transition: transform, box-shadow;
+transition-duration: 0.5s;
+}
 .stop {
 background-color: red;
 }
@@ -181,6 +205,10 @@ document.getElementById("tabA").style.textShadow = "none";
 document.getElementById("tabA").style.color = "grey";
 displayA.textContent = "30:00";
 document.getElementById("statusA").textContent = "Available!";
+document.getElementById("startA").style.transform = "translateY(-3px)";
+document.getElementById("startA").style.boxShadow = "0px 3px 0px black";
+document.getElementById("stopA").style.transform = "translateY(0px)";
+document.getElementById("stopA").style.boxShadow = "0px 0px 0px black";
 clearInterval(countdownA);
 countingA = false;
 } else if (button === "stopB") {
@@ -188,6 +216,10 @@ document.getElementById("tabB").style.textShadow = "none";
 document.getElementById("tabB").style.color = "grey";
 displayB.textContent = "30:00";
 document.getElementById("statusB").textContent = "Available!";
+document.getElementById("startB").style.transform = "translateY(-3px)";
+document.getElementById("startB").style.boxShadow = "0px 3px 0px black";
+document.getElementById("stopB").style.transform = "translateY(0px)";
+document.getElementById("stopB").style.boxShadow = "0px 0px 0px black";
 clearInterval(countdownB);
 countingB = false;
 }
@@ -210,9 +242,17 @@ var doneTime = doneHours + ":" + minuteString + "PM";
 }
 if (button === "startA" && !countingA) {
 startTimer(done, displayA);
+document.getElementById("startA").style.transform = "translateY(0px)";
+document.getElementById("startA").style.boxShadow = "0px 0px 0px black";
+document.getElementById("stopA").style.transform = "translateY(-3px)";
+document.getElementById("stopA").style.boxShadow = "0px 3px 0px black";
 document.getElementById("statusA").textContent = "Finished at " + doneTime;
 } else if (button === "startB" && !countingB) {
 startTimer(done, displayB);
+document.getElementById("startB").style.transform = "translateY(0px)";
+document.getElementById("startB").style.boxShadow = "0px 0px 0px black";
+document.getElementById("stopB").style.transform = "translateY(-3px)";
+document.getElementById("stopB").style.boxShadow = "0px 3px 0px black";
 document.getElementById("statusB").textContent = "Finished at " + doneTime;
 }
 }
