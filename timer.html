@@ -42,6 +42,8 @@ width: 125px;
 height: 125px;
 border-radius: 50%;
 margin: 2%;
+margin-bottom: 0%;
+margin-top: 0%;
 }
 body {
 text-align: center;
@@ -163,7 +165,7 @@ secondsA = secondsA < 10 ? "0" + secondsA : secondsA;
 
 display.textContent = minutesA + ":" + secondsA;
 
-if (--timerA < 0) {
+if (currentTime > endTime) {
 timerA = 0;
 display.textContent = "0:00";
 let newWin = window.open("about:blank", "Table A Done!", "width=200,height=200");
@@ -195,7 +197,7 @@ secondsB = secondsB < 10 ? "0" + secondsB : secondsB;
 
 display.textContent = minutesB + ":" + secondsB;
 
-if (--timerB < 0) {
+if (currentTime > endTime) {
 timerB = 0;
 display.textContent = "0:00";
 let newWin = window.open("about:blank", "Table B Done!", "width=200,height=200");
