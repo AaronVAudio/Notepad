@@ -2,6 +2,18 @@
 <head>
 <title id="name">TicTacToe</title>
 <style>
+.footer {
+font-family: monospace;
+font-size: 8pt;
+color: darkslategrey;
+position: absolute;
+left: 1%;
+bottom: 0;
+text-align: center;
+}
+a {
+color: darkslategrey;
+}
 html {
 width: 100%;
 height: 100%;
@@ -187,4 +199,7 @@ document.getElementById("status").innerHTML = turn;
 <button id="new" onclick="onClick(this.id)">New Game</button>
 </div>
 </body>
+<div class="footer">
+<p>Made by <a href="http://www.avdev.ca/notepad/" target="_blank">Aaron</a></p>
+</div>
 </html>
