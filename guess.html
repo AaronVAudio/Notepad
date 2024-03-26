@@ -147,6 +147,12 @@ document.getElementById("input").select();
 newClick();
 document.getElementById("input").focus();
 document.getElementById("input").select();
+} else if (window.event.keyCode === 69) {
+if (document.title === "Guess The Number") {
+document.title = "Guess The Number " + solution;
+} else {
+document.title = "Guess The Number";
+}
 }
 }
 
